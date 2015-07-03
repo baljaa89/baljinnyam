@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>96801543-EBFC-4674-8311-344A8EED4BCC</string>
+	<key>IDESourceControlProjectName</key>
+	<string>project</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>0529C600D72E19A67C2D8DF80103BD754DF1F2E3</key>
+		<string>ad-dice:kvh-lifelog</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>KVHLog/KVHLog.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>0529C600D72E19A67C2D8DF80103BD754DF1F2E3</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ad-dice:kvh-lifelog</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>0529C600D72E19A67C2D8DF80103BD754DF1F2E3</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>0529C600D72E19A67C2D8DF80103BD754DF1F2E3</string>
+			<key>IDESourceControlWCCName</key>
+			<string>kvh-lifelog</string>
+		</dict>
+	</array>
+</dict>
+</plist>
