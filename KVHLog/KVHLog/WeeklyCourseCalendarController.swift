@@ -87,7 +87,7 @@ class WeeklyCourseCalendarController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         productivityToday.text = "本日の生産性　\(productivity[10000])kvh"
-        let calendars = CalendarController()
+        let calendars = Calendar()
         switch weekBeginning {
         case calendars.myWeekday(myDate):
             day1 = myDate
@@ -178,21 +178,21 @@ class WeeklyCourseCalendarController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
             if segue.identifier == "dailyCourseCalendar"  {
                 let dailyCourseCalendar = segue.destinationViewController as! DailyCourseCalendarController
-                
-                var day0s = NSDate()
-                day0s = day7.dateByAddingTimeInterval(24 * 60 * 60)
+//                
+//                var day0s = NSDate()
+//                day0s = day7.dateByAddingTimeInterval(24 * 60 * 60)
                 switch sender!.tag{
-                case 7: dailyCourseCalendar.choosenDay = day2
-                case 6: dailyCourseCalendar.choosenDay = day3
-                case 5: dailyCourseCalendar.choosenDay = day4
+                case 7: dailyCourseCalendar.choosenDay = day1
+                case 6: dailyCourseCalendar.choosenDay = day2
+                case 5: dailyCourseCalendar.choosenDay = day3
                 case 4:
-                    dailyCourseCalendar.choosenDay = day5
+                    dailyCourseCalendar.choosenDay = day4
                 case 3:
-                    dailyCourseCalendar.choosenDay = day6
+                    dailyCourseCalendar.choosenDay = day5
                 case 2:
-                    dailyCourseCalendar.choosenDay = day7
+                    dailyCourseCalendar.choosenDay = day6
                 case 1:
-                    dailyCourseCalendar.choosenDay = day0s
+                    dailyCourseCalendar.choosenDay = day7
                 default: println(0)
                 }
             

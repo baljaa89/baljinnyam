@@ -13,7 +13,7 @@ class Productivity: NSObject {
         
         var productivity:[Int] = [Int](count: 20000, repeatedValue: 0)
         
-        productivity[10000] = 10000
+        productivity[10000] = 29999
         productivity[9999] = 7809
         productivity[9998] = 7809
         productivity[9997] = 23809

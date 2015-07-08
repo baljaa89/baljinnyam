@@ -1,6 +1,6 @@
 import UIKit
 
-class DailyCourseCalendarController: TableOriginalController,UITableViewDelegate,UITableViewDataSource{
+class DailyCourseCalendarController: TableOriginalController,UITableViewDelegate,UITableViewDataSource,WeeklyCalendarDelegate{
     
 
 
@@ -43,7 +43,15 @@ class DailyCourseCalendarController: TableOriginalController,UITableViewDelegate
             }
             ind = false
         }
-        let calendars = CalendarController()
+        
+        
+        changeLabel()
+        // Do any additional setup after loading the view.
+    }
+    
+    
+    func changeLabel(){
+        let calendars = Calendar()
         switch calendars.myWeekday(choosenDay) {
         case 1:choosenDayLabel.text = "\(calendars.myYear(choosenDay)) / \(calendars.myMonth(choosenDay)) / \(calendars.myDay(choosenDay))(日)"
         case 2:choosenDayLabel.text = "\(calendars.myYear(choosenDay)) / \(calendars.myMonth(choosenDay)) / \(calendars.myDay(choosenDay))(月)"
@@ -53,9 +61,8 @@ class DailyCourseCalendarController: TableOriginalController,UITableViewDelegate
         case 6:choosenDayLabel.text = "\(calendars.myYear(choosenDay)) / \(calendars.myMonth(choosenDay)) / \(calendars.myDay(choosenDay))(金)"
         case 7:choosenDayLabel.text = "\(calendars.myYear(choosenDay)) / \(calendars.myMonth(choosenDay)) / \(calendars.myDay(choosenDay))(土)"
         default: println(0)
-        
+            
         }
-        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
@@ -112,5 +119,20 @@ class DailyCourseCalendarController: TableOriginalController,UITableViewDelegate
     
     //MARK: - UITableView Delegate
     
+    //MARK: - UIStoryBorad Segue
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowWeeklyCalendar"{
+            let weeklyCalenderController = segue.destinationViewController as! WeeklyCalendarController
+            weeklyCalenderController.delegate = self
+         }
+    }
+    
+    //MARK: - WeeklyCalendarDelegate
+    
+    func returnSelectedDate(date: NSDate) {
+        println(date)
+        choosenDay = date
+        changeLabel()
+    }
 }

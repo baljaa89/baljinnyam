@@ -1,12 +1,37 @@
 
 import UIKit
 
-class ActivityAdditionController: UIViewController, ColorSettingDelegate,UITextFieldDelegate {
+class ActivityAdditionController: UIViewController, ColorSettingDelegate,CategorySettingDelegate,UITextFieldDelegate {
     @IBOutlet weak var colorLabel: UILabel!
     
+    @IBOutlet weak var categoryField: UITextField!
     var colorSettingController:ColorSettingController!
+    var showCategorySettingController:CategorySettingController!
+    
+    
+    
+    func didPushRegisterButtonItem(){
+        let viewControllers: [UIViewController] = self.navigationController!.viewControllers as! [UIViewController];
+        self.navigationController!.popToViewController(viewControllers[viewControllers.count - 3], animated: true);
+    }
+    
+    func didPushCancelButtonItem(){
+        let viewControllers: [UIViewController] = self.navigationController!.viewControllers as! [UIViewController];
+        self.navigationController!.popToViewController(viewControllers[viewControllers.count - 3], animated: true);
+    }
     
     override func viewDidLoad() {
+        
+        var registerItemButton = UIBarButtonItem(title: "登録", style: UIBarButtonItemStyle.Plain, target: self, action: "didPushRegisterButtonItem")
+        navigationItem.rightBarButtonItem = registerItemButton
+        
+        
+        var cancelItemButton = UIBarButtonItem(title: "キャンセル", style: UIBarButtonItemStyle.Plain, target: self, action: "didPushCancelButtonItem")
+        navigationItem.leftBarButtonItem = cancelItemButton
+        
+        
+        
+        
         super.viewDidLoad()
         var backButton = UIBarButtonItem(title: "戻る", style: .Plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backButton
@@ -20,7 +45,15 @@ class ActivityAdditionController: UIViewController, ColorSettingDelegate,UITextF
         if segue.identifier == "ShowColorSetting" {
             colorSettingController = segue.destinationViewController as! ColorSettingController
             colorSettingController.delegate = self
+        }else if segue.identifier == "ShowCategorySetting" {
+            showCategorySettingController = segue.destinationViewController as! CategorySettingController
+            showCategorySettingController.delegate = self
         }
+    }
+    
+    func getSelectedCategory(name:String)
+     {
+        categoryField.text = name
     }
     
     //MARK: - UITextFieldDelegate

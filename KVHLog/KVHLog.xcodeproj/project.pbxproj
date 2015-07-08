@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2104AB6C1B42EC1D00DCCF41 /* aa.png in Resources */ = {isa = PBXBuildFile; fileRef = 2104AB6B1B42EC1D00DCCF41 /* aa.png */; };
+		2104AB6E1B441D5B00DCCF41 /* WeeklyCalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2104AB6D1B441D5B00DCCF41 /* WeeklyCalendarController.swift */; };
 		212141DB1B306CCF003092FE /* PickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212141DA1B306CCF003092FE /* PickerDataSource.swift */; };
 		213142831B29C02E00B16648 /* TableOriginalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213142821B29C02E00B16648 /* TableOriginalController.swift */; };
 		213142851B29CBE300B16648 /* DailyCourseCalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213142841B29CBE300B16648 /* DailyCourseCalendarController.swift */; };
@@ -25,6 +27,8 @@
 		217AF9B01B2825D1006048C2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 217AF9AF1B2825D1006048C2 /* Images.xcassets */; };
 		217AF9B31B2825D1006048C2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 217AF9B11B2825D1006048C2 /* LaunchScreen.xib */; };
 		217AF9BF1B2825D1006048C2 /* KVHLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217AF9BE1B2825D1006048C2 /* KVHLogTests.swift */; };
+		21A0DFB31B45866A00714D5E /* WeeklyCourseGraphController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A0DFB21B45866A00714D5E /* WeeklyCourseGraphController.swift */; };
+		21A5D96D1B496F3900DE821E /* gridImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 21A5D96C1B496F3900DE821E /* gridImage.png */; };
 		21A8C3931B346A6700752ACA /* ActivityAdditionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8C3921B346A6700752ACA /* ActivityAdditionController.swift */; };
 		21A8C3951B35915800752ACA /* ActivityTimeInputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8C3941B35915800752ACA /* ActivityTimeInputController.swift */; };
 		21A8C3971B35A17300752ACA /* ColorSettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8C3961B35A17300752ACA /* ColorSettingController.swift */; };
@@ -37,13 +41,13 @@
 		21A8C3A71B3AF16400752ACA /* ExaminationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8C3A61B3AF16400752ACA /* ExaminationView.swift */; };
 		21A8C3A91B3C422500752ACA /* DetailSettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8C3A81B3C422500752ACA /* DetailSettingController.swift */; };
 		21C86C361B305431006F2A66 /* ActivitySelectedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C86C351B305431006F2A66 /* ActivitySelectedController.swift */; };
-		21CD1C4B1B2A729C00BD93A9 /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CD1C4A1B2A729C00BD93A9 /* CalendarController.swift */; };
+		21CD1C4B1B2A729C00BD93A9 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CD1C4A1B2A729C00BD93A9 /* Calendar.swift */; };
 		21CD1C4D1B2B08F500BD93A9 /* GraphController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CD1C4C1B2B08F500BD93A9 /* GraphController.swift */; };
 		21CD1C511B2BAECE00BD93A9 /* star2.png in Resources */ = {isa = PBXBuildFile; fileRef = 21CD1C501B2BAECE00BD93A9 /* star2.png */; };
 		21CD1C531B2BEF4400BD93A9 /* WeeklyCourseCalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CD1C521B2BEF4400BD93A9 /* WeeklyCourseCalendarController.swift */; };
 		21CD1C591B2C0FEE00BD93A9 /* Productivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CD1C581B2C0FEE00BD93A9 /* Productivity.swift */; };
 		21CD1C5B1B2C20A200BD93A9 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CD1C5A1B2C20A200BD93A9 /* CustomTabBarController.swift */; };
-		21E82CBB1B296338009E71E7 /* WeeklyCourseGraphController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E82CBA1B296338009E71E7 /* WeeklyCourseGraphController.swift */; };
+		21E6370B1B41812200823327 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E6370A1B41812200823327 /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +61,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2104AB6B1B42EC1D00DCCF41 /* aa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aa.png; sourceTree = "<group>"; };
+		2104AB6D1B441D5B00DCCF41 /* WeeklyCalendarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyCalendarController.swift; sourceTree = "<group>"; };
 		212141DA1B306CCF003092FE /* PickerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerDataSource.swift; sourceTree = "<group>"; };
 		213142821B29C02E00B16648 /* TableOriginalController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableOriginalController.swift; sourceTree = "<group>"; };
 		213142841B29CBE300B16648 /* DailyCourseCalendarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyCourseCalendarController.swift; sourceTree = "<group>"; };
@@ -79,6 +85,8 @@
 		217AF9B81B2825D1006048C2 /* KVHLogTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KVHLogTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		217AF9BD1B2825D1006048C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		217AF9BE1B2825D1006048C2 /* KVHLogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KVHLogTests.swift; sourceTree = "<group>"; };
+		21A0DFB21B45866A00714D5E /* WeeklyCourseGraphController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyCourseGraphController.swift; sourceTree = "<group>"; };
+		21A5D96C1B496F3900DE821E /* gridImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gridImage.png; sourceTree = "<group>"; };
 		21A8C3921B346A6700752ACA /* ActivityAdditionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityAdditionController.swift; sourceTree = "<group>"; };
 		21A8C3941B35915800752ACA /* ActivityTimeInputController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTimeInputController.swift; sourceTree = "<group>"; };
 		21A8C3961B35A17300752ACA /* ColorSettingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSettingController.swift; sourceTree = "<group>"; };
@@ -91,13 +99,13 @@
 		21A8C3A61B3AF16400752ACA /* ExaminationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExaminationView.swift; sourceTree = "<group>"; };
 		21A8C3A81B3C422500752ACA /* DetailSettingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailSettingController.swift; sourceTree = "<group>"; };
 		21C86C351B305431006F2A66 /* ActivitySelectedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitySelectedController.swift; sourceTree = "<group>"; };
-		21CD1C4A1B2A729C00BD93A9 /* CalendarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
+		21CD1C4A1B2A729C00BD93A9 /* Calendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 		21CD1C4C1B2B08F500BD93A9 /* GraphController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphController.swift; sourceTree = "<group>"; };
 		21CD1C501B2BAECE00BD93A9 /* star2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star2.png; sourceTree = "<group>"; };
 		21CD1C521B2BEF4400BD93A9 /* WeeklyCourseCalendarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyCourseCalendarController.swift; sourceTree = "<group>"; };
 		21CD1C581B2C0FEE00BD93A9 /* Productivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Productivity.swift; sourceTree = "<group>"; };
 		21CD1C5A1B2C20A200BD93A9 /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
-		21E82CBA1B296338009E71E7 /* WeeklyCourseGraphController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyCourseGraphController.swift; sourceTree = "<group>"; };
+		21E6370A1B41812200823327 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +186,8 @@
 		21CD1C541B2C089900BD93A9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				21CD1C4A1B2A729C00BD93A9 /* Calendar.swift */,
+				21E6370A1B41812200823327 /* CoreDataManager.swift */,
 				214AAEDF1B32FFF200211134 /* SearchActivity.swift */,
 				212141DA1B306CCF003092FE /* PickerDataSource.swift */,
 				21CD1C581B2C0FEE00BD93A9 /* Productivity.swift */,
@@ -201,30 +211,9 @@
 		21CD1C561B2C08C900BD93A9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				2137489F1B3D8EC400E18276 /* DashboardEditController.swift */,
-				21A8C3A81B3C422500752ACA /* DetailSettingController.swift */,
-				21A8C3A01B38485B00752ACA /* ProductivityExaminationInputController.swift */,
-				21A8C39E1B3838B000752ACA /* Productivity2DMeasureInputController.swift */,
-				21A8C39C1B38366C00752ACA /* WeeklyCourseExaminationController.swift */,
-				21A8C39A1B35C51400752ACA /* GraphController1.swift */,
-				21A8C3981B35A36C00752ACA /* CategorySettingController.swift */,
-				21A8C3941B35915800752ACA /* ActivityTimeInputController.swift */,
-				21A8C3921B346A6700752ACA /* ActivityAdditionController.swift */,
-				214AAEE51B33B36F00211134 /* AccountGoalController.swift */,
-				21C86C351B305431006F2A66 /* ActivitySelectedController.swift */,
-				21320EEA1B2DA287000B16FD /* AccountProfileController.swift */,
-				215956EB1B2929240033465F /* ReportController.swift */,
-				213142841B29CBE300B16648 /* DailyCourseCalendarController.swift */,
-				215956ED1B2929B10033465F /* AccountController.swift */,
-				21E82CBA1B296338009E71E7 /* WeeklyCourseGraphController.swift */,
-				21CD1C4C1B2B08F500BD93A9 /* GraphController.swift */,
-				21CD1C521B2BEF4400BD93A9 /* WeeklyCourseCalendarController.swift */,
-				213142821B29C02E00B16648 /* TableOriginalController.swift */,
-				21CD1C4A1B2A729C00BD93A9 /* CalendarController.swift */,
-				217AF9AA1B2825D1006048C2 /* ViewController.swift */,
-				21CD1C5A1B2C20A200BD93A9 /* CustomTabBarController.swift */,
-				21A8C3961B35A17300752ACA /* ColorSettingController.swift */,
-				214AAEE11B33026500211134 /* SearchController.swift */,
+				21E637071B41752300823327 /* dashboard */,
+				21E637061B4174DE00823327 /* report */,
+				21E637051B41746700823327 /* account */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -232,9 +221,72 @@
 		21CD1C571B2C093600BD93A9 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				21A5D96C1B496F3900DE821E /* gridImage.png */,
+				2104AB6B1B42EC1D00DCCF41 /* aa.png */,
 				21CD1C501B2BAECE00BD93A9 /* star2.png */,
 			);
 			name = Image;
+			sourceTree = "<group>";
+		};
+		21E637051B41746700823327 /* account */ = {
+			isa = PBXGroup;
+			children = (
+				21A8C3A81B3C422500752ACA /* DetailSettingController.swift */,
+				215956ED1B2929B10033465F /* AccountController.swift */,
+				21320EEA1B2DA287000B16FD /* AccountProfileController.swift */,
+				214AAEE51B33B36F00211134 /* AccountGoalController.swift */,
+			);
+			name = account;
+			sourceTree = "<group>";
+		};
+		21E637061B4174DE00823327 /* report */ = {
+			isa = PBXGroup;
+			children = (
+				215956EB1B2929240033465F /* ReportController.swift */,
+			);
+			name = report;
+			sourceTree = "<group>";
+		};
+		21E637071B41752300823327 /* dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				21E637091B41759400823327 /* productivity */,
+				21E637081B41758700823327 /* activity */,
+			);
+			name = dashboard;
+			sourceTree = "<group>";
+		};
+		21E637081B41758700823327 /* activity */ = {
+			isa = PBXGroup;
+			children = (
+				21A8C39A1B35C51400752ACA /* GraphController1.swift */,
+				21A8C3A01B38485B00752ACA /* ProductivityExaminationInputController.swift */,
+				21A8C39E1B3838B000752ACA /* Productivity2DMeasureInputController.swift */,
+				21A8C39C1B38366C00752ACA /* WeeklyCourseExaminationController.swift */,
+			);
+			name = activity;
+			sourceTree = "<group>";
+		};
+		21E637091B41759400823327 /* productivity */ = {
+			isa = PBXGroup;
+			children = (
+				21A0DFB21B45866A00714D5E /* WeeklyCourseGraphController.swift */,
+				21A8C3921B346A6700752ACA /* ActivityAdditionController.swift */,
+				21A8C3941B35915800752ACA /* ActivityTimeInputController.swift */,
+				21A8C3981B35A36C00752ACA /* CategorySettingController.swift */,
+				21CD1C4C1B2B08F500BD93A9 /* GraphController.swift */,
+				21CD1C521B2BEF4400BD93A9 /* WeeklyCourseCalendarController.swift */,
+				213142821B29C02E00B16648 /* TableOriginalController.swift */,
+				217AF9AA1B2825D1006048C2 /* ViewController.swift */,
+				21A8C3961B35A17300752ACA /* ColorSettingController.swift */,
+				214AAEE11B33026500211134 /* SearchController.swift */,
+				21CD1C5A1B2C20A200BD93A9 /* CustomTabBarController.swift */,
+				2137489F1B3D8EC400E18276 /* DashboardEditController.swift */,
+				21C86C351B305431006F2A66 /* ActivitySelectedController.swift */,
+				213142841B29CBE300B16648 /* DailyCourseCalendarController.swift */,
+				2104AB6D1B441D5B00DCCF41 /* WeeklyCalendarController.swift */,
+			);
+			name = productivity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,8 +370,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				21CD1C511B2BAECE00BD93A9 /* star2.png in Resources */,
+				2104AB6C1B42EC1D00DCCF41 /* aa.png in Resources */,
 				217AF9AE1B2825D1006048C2 /* Main.storyboard in Resources */,
 				21A8C3A51B3AEB1200752ACA /* ExaminationView.xib in Resources */,
+				21A5D96D1B496F3900DE821E /* gridImage.png in Resources */,
 				217AF9B31B2825D1006048C2 /* LaunchScreen.xib in Resources */,
 				217AF9B01B2825D1006048C2 /* Images.xcassets in Resources */,
 			);
@@ -353,14 +407,16 @@
 				21320EEF1B2DB3B6000B16FD /* CustomTableViewCell.swift in Sources */,
 				21CD1C531B2BEF4400BD93A9 /* WeeklyCourseCalendarController.swift in Sources */,
 				214AAEE01B32FFF200211134 /* SearchActivity.swift in Sources */,
+				21E6370B1B41812200823327 /* CoreDataManager.swift in Sources */,
 				21A8C39F1B3838B000752ACA /* Productivity2DMeasureInputController.swift in Sources */,
 				21320EEB1B2DA287000B16FD /* AccountProfileController.swift in Sources */,
-				21E82CBB1B296338009E71E7 /* WeeklyCourseGraphController.swift in Sources */,
 				21C86C361B305431006F2A66 /* ActivitySelectedController.swift in Sources */,
 				217AF9A91B2825D1006048C2 /* KVHLog.xcdatamodeld in Sources */,
 				214AAEE61B33B36F00211134 /* AccountGoalController.swift in Sources */,
+				2104AB6E1B441D5B00DCCF41 /* WeeklyCalendarController.swift in Sources */,
 				21A8C39B1B35C51400752ACA /* GraphController1.swift in Sources */,
-				21CD1C4B1B2A729C00BD93A9 /* CalendarController.swift in Sources */,
+				21CD1C4B1B2A729C00BD93A9 /* Calendar.swift in Sources */,
+				21A0DFB31B45866A00714D5E /* WeeklyCourseGraphController.swift in Sources */,
 				21CD1C5B1B2C20A200BD93A9 /* CustomTabBarController.swift in Sources */,
 				21A8C3971B35A17300752ACA /* ColorSettingController.swift in Sources */,
 				21CD1C4D1B2B08F500BD93A9 /* GraphController.swift in Sources */,

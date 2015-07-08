@@ -1,10 +1,15 @@
 
 import UIKit
 
+@objc protocol CategorySettingDelegate{
+    func getSelectedCategory(name:String)
+}
+
 class CategorySettingController: UITableViewController,UITableViewDelegate, UITableViewDataSource {
     
-    var colorArray:[UIColor] = [UIColor.darkGrayColor(),UIColor.greenColor()]
-    var categoryArray:[String] = ["仕事","name"]
+    var colorArray:[UIColor] = [UIColor.darkGrayColor(),UIColor.greenColor(),UIColor.greenColor(),UIColor.greenColor(),UIColor.greenColor()]
+    var categoryArray:[String] = ["仕事","name","運動","インドア","アウトドア"]
+    var delegate:CategorySettingDelegate!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +54,10 @@ class CategorySettingController: UITableViewController,UITableViewDelegate, UITa
 //        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         cell?.accessoryType = UITableViewCellAccessoryType.Checkmark
+        
+        self.delegate.getSelectedCategory(categoryArray[indexPath.row])
+        
+        
     }
     
     override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {

@@ -30,7 +30,7 @@ class DetailSettingController: UIViewController {
     //MARK: - Event Handler
     
     func handleBirthdayPicker(sender:UIDatePicker){
-        notificationField.text = dateFormatFunc(sender.date, style:"hh:mm")
+        notificationField.text = dateFormatFunc(sender.date, style:"HH:mm")
     }
     
     func closeKeyboard(textView : UITextView){
@@ -39,7 +39,7 @@ class DetailSettingController: UIViewController {
     
     func dateFormatFunc(date:NSDate, style:String) -> String {
         
-        dateFormatter.locale = NSLocale(localeIdentifier: "JST")
+        dateFormatter.locale = NSLocale(localeIdentifier: "ja_JP")
         dateFormatter.dateFormat = style
         return dateFormatter.stringFromDate(date)
     }

@@ -1,13 +1,7 @@
 import UIKit
 class ViewController: UIViewController,UITabBarControllerDelegate {
 
-    //変数宣言
-    
-    
-    
-    
-    
-    
+
     
     @IBAction func nextDay(sender: AnyObject) {
         choosenDayOk = choosenDayOk.dateByAddingTimeInterval(24 * 60 * 60)
@@ -23,30 +17,11 @@ class ViewController: UIViewController,UITabBarControllerDelegate {
     @IBOutlet weak var choosenDayLabel: UILabel!
     @IBOutlet weak var choosenDayProductivity: UILabel!
     
-//    var productivity:[Int]!
-    
     var choosenDayOn = 10000
     
     var choosenDayOk = NSDate()
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    //main
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,14 +30,10 @@ class ViewController: UIViewController,UITabBarControllerDelegate {
         var backButton = UIBarButtonItem(title: "戻る", style: .Plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backButton
         
-//        var tabArray = self.tabBarController?.tabBar.items as NSArray!
-//        var tabItem = tabArray.objectAtIndex(0) as! UITabBarItem
-//        tabItem.image = UIImage(named: "a.png")
-        
         
         let productivity = Productivity.sharedInstance.productivityCalculator()
         
-        let calendars = CalendarController()
+        let calendars = Calendar()
         
         choosenDayLabel.text = "\(calendars.myYear(choosenDayOk))年\(calendars.myMonth(choosenDayOk))月\(calendars.myDay(choosenDayOk))日"
         
@@ -85,24 +56,12 @@ class ViewController: UIViewController,UITabBarControllerDelegate {
             
             let weeklyCourseGraph = segue.destinationViewController as! WeeklyCourseGraphController
             var index = 0
-//            while index<7{
-////                weeklyCourseGraph.stepsCountWeek[index] = productivity[10000-index]
-//                weeklyCourseGraph.stepsCountWeek.append(productivity[10000-index])
-//                index++
-//            }
-            
-            
-            
-            
-            
-//            let graphController = segue.destinationViewController as! GraphController
-//            var index1 = 0
-//            while index<7{
-//                graphController.stepsCountWeek[index1] = productivity[10000-index1]
-//                index1++
-//            }
+        }
+        
+        if segue.identifier == "dashBoardEdit" {
+            let dashBoardEdit = segue.destinationViewController as! DashboardEditController
+            dashBoardEdit.index = NSTimeInterval(choosenDayOn-10000)
         }
     }
-    
 }
 

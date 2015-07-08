@@ -3,7 +3,11 @@ import UIKit
 class ActivitySelectedController: UITableViewController,UITableViewDelegate,UITableViewDataSource,UISearchResultsUpdating{
     
     let defaultData = ["One","Two","Three","Twenty-One"]
-    let defaultData1 = ["On","Tw","Three","Twenty-One"]
+    let subCategory = ["映画","name","number","alpha"]
+    let defaultData1 = ["On","Tw","Three","Twenty-One","On","Tw","Three","Twenty-One"]
+    let subCategory1 = ["映画1","name1","number1","alpha1","映画1","name1","number1","alpha1"]
+    let colorCategory = [UIColor.yellowColor(),UIColor.yellowColor(),UIColor.yellowColor(),UIColor.greenColor()]
+    let colorCategory1 = [UIColor.yellowColor(),UIColor.yellowColor(),UIColor.yellowColor(),UIColor.greenColor(),UIColor.yellowColor(),UIColor.yellowColor(),UIColor.yellowColor(),UIColor.greenColor()]
     var searchResults = [String]()
     
     var searchController = UISearchController()
@@ -71,14 +75,35 @@ class ActivitySelectedController: UITableViewController,UITableViewDelegate,UITa
     func configureCell(cell: UITableViewCell,
         atIndexPath indexPath: NSIndexPath) {
             if indexPath.section == 0{
+                
+                let colorLabel = cell.contentView.viewWithTag(1) as! UILabel
+                colorLabel.backgroundColor = colorCategory[indexPath.row]
+                
                 let searchActivity = (searchController.active) ? searchResults[indexPath.row] : defaultData[indexPath.row]
-                cell.textLabel?.text = searchActivity
-                cell.detailTextLabel?.textColor = UIColor.grayColor()
+//                cell.textLabel?.text = searchActivity
+//                cell.detailTextLabel?.textColor = UIColor.grayColor()
+                let mainLabel = cell.contentView.viewWithTag(2) as! UILabel
+                mainLabel.text = searchActivity
+                
+                
+                let searchActivity1 = (searchController.active) ? searchResults[indexPath.row] : subCategory[indexPath.row]
+                
+                let subLabel = cell.contentView.viewWithTag(3) as! UILabel
+                subLabel.text = searchActivity1
             }
             else {
-            let searchActivity = (searchController.active) ? searchResults[indexPath.row] : defaultData1[indexPath.row]
-            cell.textLabel?.text = searchActivity
-            cell.detailTextLabel?.textColor = UIColor.grayColor()
+                let colorLabel1 = cell.contentView.viewWithTag(1) as! UILabel
+                colorLabel1.backgroundColor = colorCategory1[indexPath.row]
+                
+                let searchActivity = (searchController.active) ? searchResults[indexPath.row] : defaultData1[indexPath.row]
+                let mainLabel = cell.contentView.viewWithTag(2) as! UILabel
+                mainLabel.text = searchActivity
+                
+                
+                let searchActivity1 = (searchController.active) ? searchResults[indexPath.row] : subCategory1[indexPath.row]
+                
+                let subLabel = cell.contentView.viewWithTag(3) as! UILabel
+                subLabel.text = searchActivity1
             }
     }
     

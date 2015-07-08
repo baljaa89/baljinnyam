@@ -13,9 +13,6 @@ class ColorSettingController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let decideButtonItem = UIBarButtonItem(title: "決定", style: UIBarButtonItemStyle.Plain, target: self, action: "didPushDecideButtonItem")
-        navigationItem.rightBarButtonItem = decideButtonItem
     }
 
     override func didReceiveMemoryWarning() {
@@ -79,6 +76,14 @@ class ColorSettingController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let cell:UICollectionViewCell = collectionView.cellForItemAtIndexPath(indexPath)!
         cell.highlighted = true
+        
+        let indexPaths : NSArray = self.collectionView!.indexPathsForSelectedItems()
+        println(indexPaths)
+        let indexPath : NSIndexPath = indexPaths[0] as! NSIndexPath
+        println(indexPath)
+        self.delegate?.getSelectedColor(indexPath)
+        
+        navigationController?.popViewControllerAnimated(true)
     }
     
     override func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
@@ -89,17 +94,5 @@ class ColorSettingController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
         let  cell = collectionView.cellForItemAtIndexPath(indexPath)
         cell?.contentView.backgroundColor = nil
-    }
-    
-    //MARK: - Event Handler
-    
-    func didPushDecideButtonItem(){
-        let indexPaths : NSArray = self.collectionView!.indexPathsForSelectedItems()
-        println(indexPaths)
-        let indexPath : NSIndexPath = indexPaths[0] as! NSIndexPath
-        println(indexPath)
-        self.delegate?.getSelectedColor(indexPath)
-        
-        navigationController?.popViewControllerAnimated(true)
     }
 }

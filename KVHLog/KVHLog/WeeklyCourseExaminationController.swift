@@ -38,7 +38,7 @@ class WeeklyCourseExaminationController: UIViewController, UITableViewDataSource
     
     func configureCell(cell: UITableViewCell,
         atIndexPath indexPath: NSIndexPath){
-            var calendars = CalendarController()
+            var calendars = Calendar()
             switch calendars.myWeekday(today) {
             case 1: week[1] = "土"
             week[2] = "金"

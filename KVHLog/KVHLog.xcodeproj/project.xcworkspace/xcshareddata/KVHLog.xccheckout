@@ -7,27 +7,39 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>96801543-EBFC-4674-8311-344A8EED4BCC</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>KVHLog</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>0529C600D72E19A67C2D8DF80103BD754DF1F2E3</key>
 		<string>ad-dice:kvh-lifelog</string>
+		<key>C0455C52BA695C185CE9EB21C641B1324167531B</key>
+		<string>github.com:baljaa89/baljinnyam.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>KVHLog/KVHLog.xcodeproj/project.xcworkspace</string>
+	<string>KVHLog/KVHLog.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>0529C600D72E19A67C2D8DF80103BD754DF1F2E3</key>
+		<string>../../../../kvh-lifelog</string>
+		<key>C0455C52BA695C185CE9EB21C641B1324167531B</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ad-dice:kvh-lifelog</string>
+	<string>github.com:baljaa89/baljinnyam.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>0529C600D72E19A67C2D8DF80103BD754DF1F2E3</string>
+	<string>C0455C52BA695C185CE9EB21C641B1324167531B</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C0455C52BA695C185CE9EB21C641B1324167531B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>baljinnyam</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
