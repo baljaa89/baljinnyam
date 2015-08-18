@@ -1,24 +1,49 @@
 
 import UIKit
+import CoreData
 
 class ActivityAdditionController: UIViewController, ColorSettingDelegate,CategorySettingDelegate,UITextFieldDelegate {
+    
+    
+    @IBOutlet weak var activityField: UITextField!
+    
     @IBOutlet weak var colorLabel: UILabel!
     
     @IBOutlet weak var categoryField: UITextField!
     var colorSettingController:ColorSettingController!
     var showCategorySettingController:CategorySettingController!
-    
-    
+    var m_activity:M_activity!
+    var indexPath:NSIndexPath!
     
     func didPushRegisterButtonItem(){
+        
+        let request = NSFetchRequest(entityName: "M_activity")
+        var error: NSError? = nil
+        
+        var className:String = "M_activity"
+        let myEntity: NSEntityDescription! = NSEntityDescription.entityForName(className, inManagedObjectContext: CoreDataManager.sharedInstance.managedObjectContext!)
+        m_activity = M_activity(entity: myEntity, insertIntoManagedObjectContext: CoreDataManager.sharedInstance.managedObjectContext)
+        
+        m_activity.activity = activityField.text
+        m_activity.color = indexPath != nil ? indexPath.row : 1
+      //  m_activity.color = indexPath.row
+        m_activity.category = categoryField.text
+        m_activity.created = NSDate()
+        
+        CoreDataManager.sharedInstance.saveContext()
+        
         let viewControllers: [UIViewController] = self.navigationController!.viewControllers as! [UIViewController];
         self.navigationController!.popToViewController(viewControllers[viewControllers.count - 3], animated: true);
     }
+    
+    //MARK: - UIBarbuttonItem Event Handler
     
     func didPushCancelButtonItem(){
         let viewControllers: [UIViewController] = self.navigationController!.viewControllers as! [UIViewController];
         self.navigationController!.popToViewController(viewControllers[viewControllers.count - 3], animated: true);
     }
+    
+    //MARK: - View LifeCycle
     
     override func viewDidLoad() {
         
@@ -66,6 +91,7 @@ class ActivityAdditionController: UIViewController, ColorSettingDelegate,Categor
     //MARK: - ColorSettingDelegate
     
     func getSelectedColor(indexPath: NSIndexPath) {
+        self.indexPath = indexPath
         switch indexPath.row {
         case 0:  colorLabel.backgroundColor = UIColor(red: 0.5, green: 0.3, blue: 0.1, alpha: 1.0)
         case 1:colorLabel.backgroundColor = UIColor.redColor()

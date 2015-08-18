@@ -1,4 +1,198 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14C1510" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="M_activity" representedClassName="KVHLog.M_activity" syncable="YES">
+        <attribute name="activity" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="color" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="created_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="memo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modified" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="modified_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="m_listofval" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="M_listofval" syncable="YES"/>
+        <relationship name="m_user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="M_user" syncable="YES"/>
+    </entity>
+    <entity name="M_dashboard" representedClassName="KVHLog.M_dashboard" syncable="YES">
+        <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="created_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="displayname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="displayorder" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="displaystatus" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modified" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="modified_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="m_listofval" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="M_listofval" syncable="YES"/>
+        <relationship name="m_user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="M_user" syncable="YES"/>
+    </entity>
+    <entity name="M_listofval" representedClassName="KVHLog.M_listofval" syncable="YES">
+        <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="created_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modified" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="modified_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="M_notification" representedClassName="KVHLog.M_notification" syncable="YES">
+        <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="created_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modified" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="modified_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notify_time" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="weekstart" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="m_user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="M_user" syncable="YES"/>
+    </entity>
+    <entity name="M_objective" representedClassName="KVHLog.M_objective" syncable="YES">
+        <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="created_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="input_obj" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="modified" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="modified_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="productive_obj" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="m_user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="M_user" syncable="YES"/>
+    </entity>
+    <entity name="M_productivity" representedClassName="PRODUCT_MODULE_NAME.M_productivity" syncable="YES">
+        <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="created_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="horizontal" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="horizontalmax" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="horizontalmaxm" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="horizontalmin" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="horizontalminm" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vertical" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="verticalmax" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="verticalmaxm" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="verticalmin" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="verticalminm" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="M_profile" representedClassName="M_profile" syncable="YES">
+        <attribute name="birthday" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="children" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="created_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="industry" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modified" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="modified_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nationality" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="region" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sex" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="workcharacter" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="workstyle" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="m_listofval" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="M_listofval" syncable="YES"/>
+        <relationship name="m_user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="M_user" syncable="YES"/>
+    </entity>
+    <entity name="M_questionaire" representedClassName="KVHLog.M_questionaire" syncable="YES">
+        <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="created_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modified" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="modified_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="questionaire" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rank" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="M_report" representedClassName="KVHLog.M_report" syncable="YES">
+        <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="created_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modified" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="modified_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="paidstatus" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="reportdisplay" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reportname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="m_listofval" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="M_listofval" syncable="YES"/>
+    </entity>
+    <entity name="M_user" representedClassName="KVHLog.M_user" syncable="YES">
+        <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="created_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fitbitaccount" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fitbitintegrate" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="fitbitpassword" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modified" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="modified_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="m_listofval" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="M_listofval" syncable="YES"/>
+    </entity>
+    <entity name="T_activity" representedClassName="KVHLog.T_activity" syncable="YES">
+        <attribute name="activity" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="created_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="endtime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="memo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modified" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="modified_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="starttime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="m_activity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="M_activity" syncable="YES"/>
+        <relationship name="m_user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="M_user" syncable="YES"/>
+    </entity>
+    <entity name="T_fitbit" representedClassName="KVHLog.T_fitbit" syncable="YES">
+        <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="created_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="datetime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="mets" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="modified" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="modified_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="m_listofval" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="M_listofval" syncable="YES"/>
+        <relationship name="m_user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="M_user" syncable="YES"/>
+    </entity>
+    <entity name="T_minputrate" representedClassName="KVHLog.T_minputrate" syncable="YES">
+        <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="created_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="daycount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="inputcount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="modified" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="modified_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="month" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="m_user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="M_user" syncable="YES"/>
+    </entity>
+    <entity name="T_productivity" representedClassName="T_productivity" syncable="YES">
+        <attribute name="achieve" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="created_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dateTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="difficulty" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="measure" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modified" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="modified_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="productivity" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="rank" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="m_user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="M_user" syncable="YES"/>
+    </entity>
+    <entity name="T_questionaire" representedClassName="KVHLog.T_questionaire" syncable="YES">
+        <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="created_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modified" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="modified_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="questionaire" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="m_questionaire" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="M_questionaire" syncable="YES"/>
+        <relationship name="m_user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="M_user" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="M_activity" positionX="153" positionY="144" width="128" height="210"/>
+        <element name="M_dashboard" positionX="144" positionY="360" width="128" height="195"/>
+        <element name="M_listofval" positionX="556" positionY="81" width="128" height="150"/>
+        <element name="M_notification" positionX="144" positionY="315" width="128" height="165"/>
+        <element name="M_objective" positionX="151" positionY="270" width="128" height="165"/>
+        <element name="M_productivity" positionX="520" positionY="-27" width="128" height="225"/>
+        <element name="M_profile" positionX="151" positionY="225" width="128" height="270"/>
+        <element name="M_questionaire" positionX="153" positionY="189" width="128" height="135"/>
+        <element name="M_report" positionX="142" positionY="405" width="128" height="180"/>
+        <element name="M_user" positionX="702" positionY="285" width="128" height="195"/>
+        <element name="T_activity" positionX="151" positionY="54" width="128" height="210"/>
+        <element name="T_fitbit" positionX="142" positionY="441" width="128" height="225"/>
+        <element name="T_minputrate" positionX="153" positionY="99" width="128" height="180"/>
+        <element name="T_productivity" positionX="153" positionY="9" width="126" height="225"/>
+        <element name="T_questionaire" positionX="142" positionY="483" width="128" height="165"/>
+    </elements>
 </model>

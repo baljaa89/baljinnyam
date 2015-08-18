@@ -1,9 +1,11 @@
 
 
 import UIKit
+import CoreData
 
 class GraphController1: UIViewController {
 
+    var calendar = Calendar()
     var goalNumber = 21000
     @IBOutlet weak var goalLine: UIView!
     @IBOutlet weak var goalLineLabel: UILabel!
@@ -19,7 +21,7 @@ class GraphController1: UIViewController {
     @IBOutlet weak var product4: UIView!
     @IBOutlet weak var product5: UIView!
     @IBOutlet weak var product6: UIView!
-    var stepsCountWeek:[Int] = [19004,10670,3400,10000,22000,24560,29320]
+    var stepsCountWeek:[Int] = [0,0,0,0,0,0,0]
     
     @IBOutlet weak var starToday: UIImageView!
     @IBOutlet weak var star1: UIImageView!
@@ -51,9 +53,11 @@ class GraphController1: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        for index in 0...6 {
-            stepsCountWeek[index] = productivity[10000-index]
-        }
+        getT_productivityData()
+        getM_objectiveData()
+//        for index in 0...6 {
+//            stepsCountWeek[index] = productivity[10000-index]
+//        }
         let calendars = Calendar()
         switch calendars.myWeekday(todayDate) {
         case 1:weekDays.text = "月　　火　　水　　木　　金　　土"
@@ -186,5 +190,36 @@ class GraphController1: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    //MARK: - CoreData Fetch
+    
+    func getT_productivityData(){
+        let request = NSFetchRequest(entityName: "T_productivity")
+        var error: NSError? = nil
+        let results:[T_productivity] = CoreDataManager.sharedInstance.managedObjectContext!.executeFetchRequest(request, error: &error) as! [T_productivity]
+        
+        
+        for var i:Int = 0;i<7; i++ {
+            var choosenDay = NSDate()
+            choosenDay = choosenDay.dateByAddingTimeInterval(NSTimeInterval(-i * 24 * 60 * 60))
+            for t_productivity in results {
+                if calendar.myYear(choosenDay) == calendar.myYear(t_productivity.dateTime) && calendar.myMonth(choosenDay) == calendar.myMonth(t_productivity.dateTime) && calendar.myDay(choosenDay) == calendar.myDay(t_productivity.dateTime){
+                    stepsCountWeek[i] = t_productivity.productivity.integerValue
+                }
+            }
+        }
+    }
+    
+    
+    //MARK: - CoreData Fetch
+    
+    func getM_objectiveData(){
+        let request = NSFetchRequest(entityName: "M_objective")
+        var error: NSError? = nil
+        let results: [M_objective] = CoreDataManager.sharedInstance.managedObjectContext!.executeFetchRequest(request, error: &error) as! [M_objective]
+        
+        for m_objective in results {
+            goalNumber =  m_objective.productive_obj.integerValue
+        }
     }
 }

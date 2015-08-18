@@ -7,8 +7,8 @@ import UIKit
 
 class CategorySettingController: UITableViewController,UITableViewDelegate, UITableViewDataSource {
     
-    var colorArray:[UIColor] = [UIColor.darkGrayColor(),UIColor.greenColor(),UIColor.greenColor(),UIColor.greenColor(),UIColor.greenColor()]
-    var categoryArray:[String] = ["仕事","name","運動","インドア","アウトドア"]
+    var colorArray:[UIColor] = [UIColor.darkGrayColor(),UIColor.greenColor(),UIColor.greenColor(),UIColor.greenColor(),UIColor.greenColor(),UIColor.greenColor()]
+    var categoryArray:[String] = ["仕事","name","運動","インドア","アウトドア","運動"]
     var delegate:CategorySettingDelegate!
 
     override func viewDidLoad() {

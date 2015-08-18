@@ -1,6 +1,6 @@
 import UIKit
 
-class DailyCourseCalendarController: TableOriginalController,UITableViewDelegate,UITableViewDataSource,WeeklyCalendarDelegate{
+class DailyCourseCalendarController: UIViewController,UITableViewDelegate,UITableViewDataSource,WeeklyCalendarDelegate{
     
 
 
@@ -17,6 +17,7 @@ class DailyCourseCalendarController: TableOriginalController,UITableViewDelegate
     }
     
     
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var choosenDayLabel: UILabel!
     
     
@@ -74,14 +75,14 @@ class DailyCourseCalendarController: TableOriginalController,UITableViewDelegate
     
     //MARK: - UITableView Datasource
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 96
     }
     
     
     
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell:CustomTableViewCell = tableView.dequeueReusableCellWithIdentifier("CustomTableViewCell", forIndexPath: indexPath) as! CustomTableViewCell
         
         let timeLabel = cell.contentView.viewWithTag(1) as! UILabel
@@ -99,6 +100,7 @@ class DailyCourseCalendarController: TableOriginalController,UITableViewDelegate
         if indexPath.row % 4 == 0 {
             if indexPath.row < 40 {
                 a = "0\((indexPath.row)/4):00"
+                
             }
             else {
                 a = "\((indexPath.row)/4):00"
@@ -124,8 +126,17 @@ class DailyCourseCalendarController: TableOriginalController,UITableViewDelegate
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowWeeklyCalendar"{
             let weeklyCalenderController = segue.destinationViewController as! WeeklyCalendarController
+            
+            
             weeklyCalenderController.delegate = self
          }
+        else if segue.identifier == "ShowActivitySelected" {
+            let activitySelectedController = segue.destinationViewController as! ActivitySelectedController
+            let indexPath = tableView.indexPathForSelectedRow()
+            activitySelectedController.indexPath = indexPath
+            activitySelectedController.choosenDay = choosenDay
+        }
+        
     }
     
     //MARK: - WeeklyCalendarDelegate

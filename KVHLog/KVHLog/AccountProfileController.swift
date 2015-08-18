@@ -1,7 +1,8 @@
 import UIKit
+import CoreData
 
 class AccountProfileController: UIViewController,UITextFieldDelegate, UIPickerViewDataSource,
-UIPickerViewDelegate{
+UIPickerViewDelegate,NSFetchedResultsControllerDelegate{
     
     let dateFormatter = NSDateFormatter()
     
@@ -12,9 +13,13 @@ UIPickerViewDelegate{
     var jobSpecial = ["プログラマー2","医者","調理師"]
     var nationality = ["日本","アメリカ","カナダ","イギリス","ドイツ"]
     var isChild = ["子供いる","子供いない"]
-    
-    
     var region = ["東京","大阪","新潟","静岡","青森"]
+    
+    var isSaved:Bool = false
+    var m_profile:M_profile!
+    var defaultResults:[M_profile] = []
+    
+    var _fetchedResultsController: NSFetchedResultsController? = nil
     
     @IBOutlet weak var birthdayField: UITextField!
     
@@ -31,10 +36,59 @@ UIPickerViewDelegate{
     @IBOutlet weak var nationalityField: UITextField!
     
     @IBOutlet weak var isChildField: UITextField!
+
+    @IBAction func didPushSaveButton(sender: AnyObject) {
+        
+        let request = NSFetchRequest(entityName: "M_profile")
+        var error: NSError? = nil
+        var className:String = "M_profile"
+        
+        if let results = CoreDataManager.sharedInstance.managedObjectContext!.executeFetchRequest(request, error: &error) {
+            for result in results {
+                CoreDataManager.sharedInstance.managedObjectContext!.deleteObject(result as! NSManagedObject)
+            }
+        }
+        
+        let myEntity: NSEntityDescription! = NSEntityDescription.entityForName(className, inManagedObjectContext: CoreDataManager.sharedInstance.managedObjectContext!)
+        m_profile = M_profile(entity: myEntity, insertIntoManagedObjectContext: CoreDataManager.sharedInstance.managedObjectContext)
+        
+        m_profile.birthday = birthdayField.text
+        m_profile.sex = genderField.text
+        m_profile.industry = jobField.text
+        m_profile.workstyle = jobStyleField.text
+        m_profile.workcharacter = jobSpecialField.text
+        m_profile.region = regionField.text
+        m_profile.nationality = nationalityField.text
+        m_profile.children = isChildField.text
+        m_profile.created  = NSDate()
+        m_profile.created_by = "dfasfds"
+        m_profile.modified = NSDate()
+        m_profile.modified_by = "dffdafds"
+        
+        CoreDataManager.sharedInstance.saveContext()
+
+        self.navigationController?.popViewControllerAnimated(true)
+    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var fetchRequest = NSFetchRequest(entityName: "M_profile")
+        let ruby = NSSortDescriptor(key: "birthday", ascending: true)
+        fetchRequest.sortDescriptors = [ruby]
+        
+        if let managedObjectContext = CoreDataManager.sharedInstance.managedObjectContext {
+            _fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+            fetchedResultsController.delegate = self
+            var error:NSError?
+            var result = fetchedResultsController.performFetch(&error)
+            defaultResults = fetchedResultsController.fetchedObjects as! [M_profile]
+            if result != true {
+                println(error?.localizedDescription)
+            }
+        }
+        
         let today = NSDate()
        // birthdayField.text =
         var toolBar:UIToolbar = UIToolbar()
@@ -95,10 +149,32 @@ UIPickerViewDelegate{
         isChildPickerView.delegate = self
         isChildField.inputView = isChildPickerView
         
+        getM_profileData()
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    //MARK: - Data Fetch
+    
+    func getM_profileData(){
+        let request = NSFetchRequest(entityName: "M_profile")
+        var error: NSError? = nil
+        let results: NSArray = CoreDataManager.sharedInstance.managedObjectContext!.executeFetchRequest(request, error: &error)!
+        
+        for item in results {
+            var m_profile = item as! M_profile
+            birthdayField.text = m_profile.birthday
+            genderField.text = m_profile.sex
+            jobField.text = m_profile.industry
+            jobStyleField.text = m_profile.workstyle
+            jobSpecialField.text = m_profile.workcharacter
+            regionField.text = m_profile.region
+            nationalityField.text = m_profile.nationality
+            isChildField.text = m_profile.children
+        }
     }
     
     func closeKeyboard(textView : UITextView){
@@ -222,5 +298,34 @@ UIPickerViewDelegate{
             }
         }
         
+    }
+    
+    // MARK: - NSFetchedResultController
+    
+    var fetchedResultsController: NSFetchedResultsController {
+        if _fetchedResultsController != nil {
+            return _fetchedResultsController!
+        }
+        
+        let context: NSManagedObjectContext? = CoreDataManager.sharedInstance.managedObjectContext
+        let name = NSSortDescriptor(key: "birthday", ascending: true)
+        
+        let request = NSFetchRequest(entityName: "M_profile")
+        var error0:NSError?
+        
+        request.sortDescriptors = [name]
+        request.returnsObjectsAsFaults = false
+        
+        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context!, sectionNameKeyPath: nil, cacheName: nil)
+        
+        aFetchedResultsController.delegate = self
+        
+        _fetchedResultsController = aFetchedResultsController
+        
+        var error: NSError? = nil
+        if !_fetchedResultsController!.performFetch(&error) {
+            abort()
+        }
+        return _fetchedResultsController!
     }
 }

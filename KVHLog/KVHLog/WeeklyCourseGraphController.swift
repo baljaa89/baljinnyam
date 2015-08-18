@@ -1,4 +1,5 @@
 import UIKit
+import CoreData
 class WeeklyCourseGraphController: TableOriginalController,UITableViewDelegate ,UITableViewDataSource {
     
     
@@ -6,17 +7,22 @@ class WeeklyCourseGraphController: TableOriginalController,UITableViewDelegate ,
     
     @IBOutlet weak var thisWeekLabel: UILabel!
     
+    
+    
     var week:[String] = ["今日","木","水","火","月","日","土"]
 //    var stepsCountWeek:[Int] = [0,0,0,0,0,0,0]
     var stepsCountWeek:[Int] = [0,0,0,0,0,0,0]
     var isAchievement:[CGFloat] = [1.0,1.0,1.0,1.0,1.0,1.0,1.0]
     var goalNumber = 21000
     var today = NSDate()
+    var calendar = Calendar()
     let productivity = Productivity.sharedInstance.productivityCalculator()
     //MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        getT_productivityData()
+        getM_objectiveData()
         var backButton = UIBarButtonItem(title: "戻る", style: .Plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backButton
     }
@@ -95,9 +101,9 @@ class WeeklyCourseGraphController: TableOriginalController,UITableViewDelegate ,
             
             
 //            dashBoard.initialPro()
-            for index in 0...6 {
-                stepsCountWeek[index] = productivity[10000-index]
-            }
+//            for index in 0...6 {
+//                stepsCountWeek[index] = productivity[10000-index]
+//            }
             var weekTotal = 0
             for index in 0...6 {
                 weekTotal = weekTotal+stepsCountWeek[index]
@@ -130,6 +136,111 @@ class WeeklyCourseGraphController: TableOriginalController,UITableViewDelegate ,
             
             dailyCourseCalendar.index = indexPath!
             
+        }
+    }
+    
+    
+    //MARK: - CoreData Fetch
+    
+    func getT_productivityData(){
+        let request = NSFetchRequest(entityName: "T_productivity")
+        var error: NSError? = nil
+        let results:[T_productivity] = CoreDataManager.sharedInstance.managedObjectContext!.executeFetchRequest(request, error: &error) as! [T_productivity]
+        
+        
+        
+        for var i:Int = 0;i<7; i++ {
+            var choosenDay = NSDate()
+            choosenDay = choosenDay.dateByAddingTimeInterval(NSTimeInterval(-i * 24 * 60 * 60))
+            for t_productivity in results {
+                if calendar.myYear(choosenDay) == calendar.myYear(t_productivity.dateTime) && calendar.myMonth(choosenDay) == calendar.myMonth(t_productivity.dateTime) && calendar.myDay(choosenDay) == calendar.myDay(t_productivity.dateTime){
+                    stepsCountWeek[i] = t_productivity.productivity.integerValue
+                }
+            }
+        }
+        // 月間入力数をデータベースに保存する
+        var summary = Array<[Int]>(count: 42,
+            repeatedValue: [Int](count: 13, repeatedValue: 0))
+        
+        for t_productivity in results{
+            let year  = calendar.myYear(t_productivity.dateTime)
+            let month = calendar.myMonth(t_productivity.dateTime)
+                summary[year-2000][month]++
+        }
+        var year = 0
+        var month = 1
+        var x = 0
+        for var i = 0; i < 42; ++i
+        {
+            for var j = 1; j<13; ++j
+            {
+                if summary[i][j]>0
+                {
+                    year = i
+                    month = j
+                    x = 1
+                    break
+                }
+            }
+            if x > 0
+            {
+                break
+            }
+        }
+        println(year)
+        var date  = NSDate()
+        
+        var className:String = "T_minputrate"
+        let myEntity: NSEntityDescription! = NSEntityDescription.entityForName(className, inManagedObjectContext: CoreDataManager.sharedInstance.managedObjectContext!)
+        let t_minputrate = T_minputrate(entity: myEntity, insertIntoManagedObjectContext: CoreDataManager.sharedInstance.managedObjectContext)
+        
+       
+        
+        
+        for var i = year; i < calendar.myYear(date)-1999; ++i
+        {
+            for var j = 1; j<13; j++
+            {
+                if(summary[i][j]>0)
+                {
+                    if j<10
+                    {
+                        t_minputrate.month = "\(year+2000)0\(j)"
+                    }
+                    else
+                    {
+                        t_minputrate.month = "\(year+2000)\(j)"
+                    }
+                    t_minputrate.inputcount = summary[i][j]
+                    t_minputrate.daycount = dayCount(i, month:j)
+                 //   println("year is \(j)   \(t_minputrate.inputcount)   \(t_minputrate.daycount)")
+                     CoreDataManager.sharedInstance.saveContext()
+                }
+            }
+        }
+        
+    }
+    
+    
+    //月の最終日を返す関数
+    func dayCount(year:Int, month:Int) -> Int
+    {
+        switch month
+        {
+        case 1,3,5,7,8,10,12: return 31
+        case 4,6,9,11: return 30
+        case 2: if year % 4 == 0 {return 29} else {return 28}
+        default: return 0
+        }
+    }
+    
+    func getM_objectiveData(){
+        let request = NSFetchRequest(entityName: "M_objective")
+        var error: NSError? = nil
+        let results: [M_objective] = CoreDataManager.sharedInstance.managedObjectContext!.executeFetchRequest(request, error: &error) as! [M_objective]
+        
+        for m_objective in results {
+            goalNumber =  m_objective.productive_obj.integerValue
         }
     }
 }

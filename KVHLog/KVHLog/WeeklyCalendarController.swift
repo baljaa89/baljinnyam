@@ -1,6 +1,7 @@
 
 
 import UIKit
+import CoreData
 
 protocol WeeklyCalendarDelegate{
     func returnSelectedDate(date:NSDate)
@@ -29,10 +30,12 @@ class WeeklyCalendarController: UIViewController {
     @IBOutlet weak var da6Button: UIButton!
     
     
+    @IBOutlet weak var nextWeekOutletButton: UIButton!
+    @IBOutlet weak var previousWeekOutletButton: UIButton!
     
     
     
-    
+    var today = 10000
     var delegate:WeeklyCalendarDelegate!
     
     
@@ -40,15 +43,36 @@ class WeeklyCalendarController: UIViewController {
     var calendarEnd = NSDate()
     @IBOutlet weak var choosenWeekLabel: UILabel!
     
+    //前の週のデータ(UIButton)を一度削除する
+    func removeAllSubviews(parentView: UIView){
+        calendarStart = NSDate()
+        calendarEnd = NSDate()
+        var subviews = parentView.subviews
+        for subview in subviews {
+            if let sub1 = subview as? UIButton {
+                if sub1 != nextWeekOutletButton && sub1 != previousWeekOutletButton && sub1 != da6Button && sub1 != day5Button && sub1 != day4Button && sub1 != day3Button && sub1 != day2Button && sub1 != day1Button && sub1 != day0Button {
+                sub1.removeFromSuperview()
+                }
+            }
+        }
+    }
     
     @IBAction func nextWeekButton(sender: AnyObject) {
+        removeAllSubviews(self.view)
+        drawTimeGraph(0,color:1)
         myDate = myDate.dateByAddingTimeInterval(7*24 * 60 * 60)
         load()
+        getT_ActivityData()
+        
+        
     }
     
     @IBAction func previousWeekButton(sender: AnyObject) {
+        removeAllSubviews(self.view)
+        drawTimeGraph(0,color:1)
         myDate = myDate.dateByAddingTimeInterval(-7*24 * 60 * 60)
         load()
+        getT_ActivityData()
     }
     
 
@@ -69,7 +93,7 @@ class WeeklyCalendarController: UIViewController {
     
     
     
-    var weekBeginning = 1
+    var weekBeginning = 2
     
     var myDate = NSDate()
     var myDateLast = NSDate()  //週の最後の日のデータ
@@ -80,17 +104,29 @@ class WeeklyCalendarController: UIViewController {
     var day5 = NSDate()
     var day6 = NSDate()
     var day7 = NSDate()
+    var buttonDay:UIButton!
     
     override func viewDidLoad() {
-        calendarStart = calendarStart.dateByAddingTimeInterval(0*60 * 60)
-        calendarEnd = calendarEnd.dateByAddingTimeInterval(6*60 * 60)
         
         
+        drawTimeGraph(0,color:1)
+        getM_profileData()
+        load()
+        getT_ActivityData()
         
-        
+//        calendarStart = calendarStart.dateByAddingTimeInterval(0*60 * 60)
+//        calendarEnd = calendarEnd.dateByAddingTimeInterval(6*60 * 60)
         
         super.viewDidLoad()
-        load()
+        
+      //  drawTimeGraph()
+        
+    }
+    
+    
+    
+    
+    func drawTimeGraph(x:Int, color:Int){
         da6Button.setTranslatesAutoresizingMaskIntoConstraints(true)
         day0Button.setTranslatesAutoresizingMaskIntoConstraints(true)
         day1Button.setTranslatesAutoresizingMaskIntoConstraints(true)
@@ -106,7 +142,7 @@ class WeeklyCalendarController: UIViewController {
         day5Label.setTranslatesAutoresizingMaskIntoConstraints(true)
         day6Label.setTranslatesAutoresizingMaskIntoConstraints(true)
         
-        
+        buttonDay = UIButton()
         
         
         switch self.view.frame.size.width {
@@ -119,78 +155,72 @@ class WeeklyCalendarController: UIViewController {
             
         default:println()
         }
+         let calendar = Calendar()
+        
+        let hourStart   = Float(calendar.myHour(calendarStart))
+        let minuteStart = Float(calendar.myMinute(calendarStart))
+        let hourEnd     = Float(calendar.myHour(calendarEnd))
+        let minuteEnd   = Float(calendar.myMinute(calendarEnd))
+        
+        
+        buttonDay.setTranslatesAutoresizingMaskIntoConstraints(true)
         
         
         
-        let calendar = Calendar()
+        switch self.view.frame.size.width {
+        case 320:
+            let x1 = CGFloat(25+40*(x-1))
+            let y1 = CGFloat(151+(285*(hourStart+minuteStart/60)/24))
+            let y2 = CGFloat(285*(hourEnd+minuteEnd-hourStart-minuteStart)/24)
+            buttonDay.frame = CGRectMake(x1, y1, 30, y2)
+            
+        case 375:
+            let x1 = CGFloat(30+46*(x-1))
+            let y1 = CGFloat(165+(365*(hourStart+minuteStart/60)/24))
+            let y2 = CGFloat(365*(hourEnd+minuteEnd-hourStart-minuteStart)/24)
+            buttonDay.frame = CGRectMake(x1, y1, 35, y2)
+        case 414:
+            let x1 = CGFloat(36+51*(x-1))
+            let y1 = CGFloat(173+(425*(hourStart+minuteStart/60)/24))
+            let y2 = CGFloat(425*(hourEnd+minuteEnd-hourStart-minuteStart)/24)
+            buttonDay.frame = CGRectMake(x1, y1, 30, y2)
+        default:println()
+        }
+        buttonDay.layer.masksToBounds = true
+        buttonDay.layer.cornerRadius = 8.0
+        
+      //  buttonDay.backgroundColor = UIColor.redColor()
+        getSelectedColor(color)
+       
         let days = [day1,day2,day3,day4,day5,day6,day7]
         var x = 0
         for day in days{
             x++
-        if calendar.myDay(calendarStart) == calendar.myDay(day) && calendar.myMonth(calendarStart) == calendar.myMonth(day) && calendar.myYear(calendarStart) == calendar.myYear(day){
-            
-            let hourStart   = Float(calendar.myHour(calendarStart))
-            let minuteStart = Float(calendar.myMinute(calendarStart))
-            let hourEnd     = Float(calendar.myHour(calendarEnd))
-            let minuteEnd   = Float(calendar.myMinute(calendarEnd))
-            
-            let buttonDay = UIButton()
-            buttonDay.setTranslatesAutoresizingMaskIntoConstraints(true)
-            
-            
-            
-            switch self.view.frame.size.width {
-            case 320:
-                let x1 = CGFloat(25+40*(x-1))
-                let y1 = CGFloat(151+(285*(hourStart+minuteStart/60)/24))
-                let y2 = CGFloat(285*(hourEnd+minuteEnd-hourStart-minuteStart)/24)
-                buttonDay.frame = CGRectMake(x1, y1, 30, y2)
-                buttonDay.backgroundColor = UIColor.redColor()
-            case 375:
-                let x1 = CGFloat(30+46*(x-1))
-                let y1 = CGFloat(165+(365*(hourStart+minuteStart/60)/24))
-                let y2 = CGFloat(365*(hourEnd+minuteEnd-hourStart-minuteStart)/24)
-                buttonDay.frame = CGRectMake(x1, y1, 35, y2)
-                buttonDay.backgroundColor = UIColor.redColor()
-            case 414:
-                let x1 = CGFloat(36+51*(x-1))
-                let y1 = CGFloat(173+(425*(hourStart+minuteStart/60)/24))
-                let y2 = CGFloat(425*(hourEnd+minuteEnd-hourStart-minuteStart)/24)
-                buttonDay.frame = CGRectMake(x1, y1, 30, y2)
-                buttonDay.backgroundColor = UIColor.redColor()
-            default:println()
-            }
-            
-            
-//            
-//            let x1 = CGFloat(25+40*(x-1))
-//            let y1 = CGFloat(151+(285*hourStart/24))
-//            let y2 = CGFloat(285*(hourEnd-hourStart)/24)
-//            buttonDay.frame = CGRectMake(x1, y1, 30, y2)
-//            buttonDay.backgroundColor = UIColor.blackColor()
-            
-            
-            switch x {
-            case 1:
-                buttonDay.addTarget(self, action: "day6Button:", forControlEvents: UIControlEvents.TouchUpInside)
+            if calendar.myDay(calendarStart) == calendar.myDay(day) && calendar.myMonth(calendarStart) == calendar.myMonth(day) && calendar.myYear(calendarStart) == calendar.myYear(day){
                 
-            case 2:
-                buttonDay.addTarget(self, action: "day5Button:", forControlEvents: UIControlEvents.TouchUpInside)
-            case 3:
-                buttonDay.addTarget(self, action: "day4Button:", forControlEvents: UIControlEvents.TouchUpInside)
-            case 4:
-                buttonDay.addTarget(self, action: "day3Button:", forControlEvents: UIControlEvents.TouchUpInside)
-            case 5:
-                buttonDay.addTarget(self, action: "day2Button:", forControlEvents: UIControlEvents.TouchUpInside)
-            case 6:
-                buttonDay.addTarget(self, action: "day1Button:", forControlEvents: UIControlEvents.TouchUpInside)
-            case 7:
-                buttonDay.addTarget(self, action: "day0Button:", forControlEvents: UIControlEvents.TouchUpInside)
-            default: println()
-            
+                
+                
+                switch x {
+                case 1:
+                    buttonDay.addTarget(self, action: "day6Button:", forControlEvents: UIControlEvents.TouchUpInside)
+                    
+                case 2:
+                    buttonDay.addTarget(self, action: "day5Button:", forControlEvents: UIControlEvents.TouchUpInside)
+                case 3:
+                    buttonDay.addTarget(self, action: "day4Button:", forControlEvents: UIControlEvents.TouchUpInside)
+                case 4:
+                    buttonDay.addTarget(self, action: "day3Button:", forControlEvents: UIControlEvents.TouchUpInside)
+                case 5:
+                    buttonDay.addTarget(self, action: "day2Button:", forControlEvents: UIControlEvents.TouchUpInside)
+                case 6:
+                    buttonDay.addTarget(self, action: "day1Button:", forControlEvents: UIControlEvents.TouchUpInside)
+                case 7:
+                    buttonDay.addTarget(self, action: "day0Button:", forControlEvents: UIControlEvents.TouchUpInside)
+                default: println()
+                    
+                }
+                self.view.addSubview(buttonDay)
             }
-            self.view.addSubview(buttonDay)
-        }
         }
         
     }
@@ -256,7 +286,8 @@ class WeeklyCalendarController: UIViewController {
     
     
     func load() {
-        productivityToday.text = "本日の生産性　\(productivity[10000])kvh"
+        getT_productivityData()
+        productivityToday.text = "本日の生産性　\(today)kvh"
         let calendars = Calendar()
         switch weekBeginning {
         case calendars.myWeekday(myDate):
@@ -381,5 +412,111 @@ class WeeklyCalendarController: UIViewController {
         navigationController?.popViewControllerAnimated(true)
     }
     
+    
+    
+    //MARK: - CoreData Fetch
+    
+    func getT_ActivityData(){
+        let request = NSFetchRequest(entityName: "T_activity")
+        var error: NSError? = nil
+        let results: [T_activity] = CoreDataManager.sharedInstance.managedObjectContext!.executeFetchRequest(request, error: &error)! as! [T_activity]
+        
+        
+        let request1 = NSFetchRequest(entityName: "M_activity")
+        let results1: [M_activity] = CoreDataManager.sharedInstance.managedObjectContext!.executeFetchRequest(request1, error: &error)! as! [M_activity]
+        
+        var calendar = Calendar()
+        var choosenDay = day1
+        for var i = 0;i<7;++i {
+            for t_activity in results {
+                if calendar.myYear(choosenDay) == calendar.myYear(t_activity.starttime) && calendar.myMonth(choosenDay) == calendar.myMonth(t_activity.starttime) && calendar.myDay(choosenDay) == calendar.myDay(t_activity.starttime){
+                    var color = 1
+                    for m_activity in results1 {
+                        if m_activity.activity == t_activity.activity {
+                            color = m_activity.color.integerValue
+                        }
+                    }
+//
+                    calendarStart = t_activity.starttime
+              //      println("time is \(calendarStart)")
+                    calendarEnd = t_activity.endtime
+                    
+                    drawTimeGraph(i+1,color:color)
+                    
+                }
+                
+            
+            }
+           choosenDay = choosenDay.dateByAddingTimeInterval(24*60*60)
+        }
+    }
+    
+    func getSelectedColor(i:Int) {
+        switch i{
+        case 0:  buttonDay.backgroundColor = UIColor(red: 0.5, green: 0.3, blue: 0.1, alpha: 1.0)
+        case 1:buttonDay.backgroundColor = UIColor.redColor()
+        case 2:buttonDay.backgroundColor = UIColor.blueColor()
+        case 3:buttonDay.backgroundColor = UIColor.grayColor()
+        case 4:buttonDay.backgroundColor = UIColor.lightGrayColor()
+        case 5:buttonDay.backgroundColor = UIColor.greenColor()
+        case 6:buttonDay.backgroundColor = UIColor.orangeColor()
+        case 7:buttonDay.backgroundColor = UIColor.yellowColor()
+        case 8:buttonDay.backgroundColor = UIColor(red: 0.1, green: 0.2, blue: 0.2, alpha: 1.0)
+        case 9:buttonDay.backgroundColor = UIColor(red: 0.3, green: 0.2, blue: 0.2, alpha: 1.0)
+        case 10:buttonDay.backgroundColor = UIColor(red: 0.5, green: 0.2, blue: 0.2, alpha: 1.0)
+        case 11:buttonDay.backgroundColor = UIColor(red: 0.7, green: 0.2, blue: 0.2, alpha: 1.0)
+        case 12:buttonDay.backgroundColor = UIColor(red: 0.9, green: 0.2, blue: 0.2, alpha: 1.0)
+        case 13:buttonDay.backgroundColor = UIColor(red: 0.1, green: 0.4, blue: 0.2, alpha: 1.0)
+        case 14:buttonDay.backgroundColor = UIColor(red: 0.3, green: 0.4, blue: 0.2, alpha: 1.0)
+        case 15:buttonDay.backgroundColor = UIColor(red: 0.7, green: 0.4, blue: 0.2, alpha: 1.0)
+        case 16:buttonDay.backgroundColor = UIColor(red: 0.9, green: 0.4, blue: 0.2, alpha: 1.0)
+        case 17:buttonDay.backgroundColor = UIColor(red: 0.1, green: 0.4, blue: 0.6, alpha: 1.0)
+        case 18:buttonDay.backgroundColor = UIColor(red: 0.3, green: 0.4, blue: 0.6, alpha: 1.0)
+        case 19:buttonDay.backgroundColor = UIColor(red: 0.5, green: 0.4, blue: 0.6, alpha: 1.0)
+        case 20:buttonDay.backgroundColor = UIColor(red: 0.7, green: 0.4, blue: 0.6, alpha: 1.0)
+        case 21:buttonDay.backgroundColor = UIColor(red: 0.9, green: 0.4, blue: 0.6, alpha: 1.0)
+        case 22:buttonDay.backgroundColor = UIColor(red: 0.1, green: 0.8, blue: 0.6, alpha: 1.0)
+        case 23:buttonDay.backgroundColor = UIColor(red: 0.5, green: 0.8, blue: 0.6, alpha: 1.0)
+            
+        default: println(0)
+        }
+    }
+    
+    func getM_profileData(){
+        let request = NSFetchRequest(entityName: "M_notification")
+        var error: NSError? = nil
+        let results: NSArray = CoreDataManager.sharedInstance.managedObjectContext!.executeFetchRequest(request, error: &error)!
+        
+        
+        
+        for item in results {
+            var m_notification = item as! M_notification
+            
+            if CoreDataManager.sharedInstance.managedObjectContext!.countForFetchRequest(request, error: &error) > 0{
+                weekBeginning = m_notification.weekstart.integerValue
+                println("time is \(weekBeginning)")
+                
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    func getT_productivityData(){
+        let request = NSFetchRequest(entityName: "T_productivity")
+        var error: NSError? = nil
+        let results:[T_productivity] = CoreDataManager.sharedInstance.managedObjectContext!.executeFetchRequest(request, error: &error) as! [T_productivity]
+        var calendar = Calendar()
+        
+        
+            var choosenDay = NSDate()
+            for t_productivity in results {
+                if calendar.myYear(choosenDay) == calendar.myYear(t_productivity.dateTime) && calendar.myMonth(choosenDay) == calendar.myMonth(t_productivity.dateTime) && calendar.myDay(choosenDay) == calendar.myDay(t_productivity.dateTime){
+                    today = t_productivity.productivity.integerValue
+                }
+            }
+    }
 
 }
